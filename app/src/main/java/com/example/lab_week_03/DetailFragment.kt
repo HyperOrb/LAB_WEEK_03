@@ -7,20 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 
-// The fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+// The old fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+// These are no longer used by the new newInstance method, but we can leave them for now.
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [DetailFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class DetailFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-    // These are computed properties to safely get the TextViews from the view.
     private val coffeeTitle: TextView?
         get() = view?.findViewById(R.id.coffee_title)
 
@@ -43,6 +38,15 @@ class DetailFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_detail, container, false)
     }
 
+    // --- THIS IS THE UPDATED PART ---
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        // Get the coffee ID from arguments, default to 0 if not found
+        val coffeeId = arguments?.getInt(COFFEE_ID, 0) ?: 0
+        // Set the coffee data based on the ID
+        setCoffeeData(coffeeId)
+    }
+
     /**
      * This function is called by the MainActivity to update the UI
      * with the details of the selected coffee.
@@ -61,20 +65,25 @@ class DetailFragment : Fragment() {
                 coffeeTitle?.text = getString(R.string.latte_title)
                 coffeeDesc?.text = getString(R.string.latte_desc)
             }
+            else -> {
+                // Default case: show placeholder text if ID is invalid or 0
+                coffeeTitle?.text = getString(R.string.placeholder_title)
+                coffeeDesc?.text = getString(R.string.placeholder_desc)
+            }
         }
     }
 
     companion object {
+        private const val COFFEE_ID = "COFFEE_ID"
+
         /**
          * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
+         * this fragment using the provided coffee ID.
          */
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(coffeeId: Int) =
             DetailFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                    putInt(COFFEE_ID, coffeeId)
                 }
             }
     }

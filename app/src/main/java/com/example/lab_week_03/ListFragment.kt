@@ -7,10 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-// Define the interface for communication
-interface CoffeeListener {
-    fun onSelected(coffeeId: Int)
-}
+// The 'CoffeeListener' interface has been moved to its own file to fix the "Redeclaration" error.
 
 // Make the class implement View.OnClickListener
 class ListFragment : Fragment(), View.OnClickListener {
@@ -22,13 +19,12 @@ class ListFragment : Fragment(), View.OnClickListener {
     private lateinit var coffeeListener: CoffeeListener
 
     override fun onAttach(context: Context) {
-        // ... the rest of your file remains the same
         super.onAttach(context)
         // This makes sure the host activity has implemented the listener
         if (context is CoffeeListener) {
             coffeeListener = context
         } else {
-            throw RuntimeException("Must implement CoffeeListener")
+            throw RuntimeException("$context must implement CoffeeListener")
         }
     }
 

@@ -14,5 +14,31 @@
  espresso with steamed milk and only a little milk foam poured over it.
  Serve in a
  latte glass or a coffee cup. Flavored syrup can be added.</string> [cite: 488, 489]
-    <string name="coffee_list">Coffee List</string> [cite: 490]
+    <string name="coffee_list">Coffee List</string>
+
+    <!-- ADD THESE TWO LINES -->
+    <string name="placeholder_title">Select a Coffee</string>
+    <string name="placeholder_desc">Details for the selected coffee will appear here.</string> [cite: 490]
+
+
+    <!-- You will also need strings for your coffee types -->
+    <!-- <string name="affogato_title">Affogato</string> -->
+
+    <!-- <string name="affogato_desc">A delicious coffee-based dessert. It usually takes the form of a
+        scoop of plain milk-flavored or vanilla ice cream or gelato topped or "drowned" with a shot
+        of hot espresso.
+    </string> -->
+
+    <!-- <string name="americano_title">Americano</string> -->
+
+    <!-- <string name="americano_desc">Caffè Americano is a type of coffee drink prepared by diluting an
+        espresso with hot water, giving it a similar strength to, but different flavor from,
+        traditionally brewed coffee.
+    </string> -->
+
+    <!-- <string name="latte_title">Latte</string> -->
+
+    <!-- <string name="latte_desc">A caffè latte is a coffee drink of Italian origin made with espresso
+        and steamed milk.
+    </string> -->
 </resources>
