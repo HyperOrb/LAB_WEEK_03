@@ -7,14 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 
-// The class signature has been updated and the listener pattern has been completely removed.
 class ListFragment : Fragment() {
 
     private var param1: String? = null
     private var param2: String? = null
-
-    // The 'coffeeListener' variable and the 'onAttach' method have been removed
-    // as they are no longer needed with Jetpack Navigation.
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,16 +24,18 @@ class ListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_list, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         val coffeeList = listOf<View>(
             view.findViewById(R.id.affogato),
             view.findViewById(R.id.americano),
-            view.findViewById(R.id.latte)
+            view.findViewById(R.id.latte),
+            view.findViewById(R.id.cappuccino),
+            view.findViewById(R.id.espresso)
         )
 
         coffeeList.forEach { coffee ->
